@@ -157,6 +157,7 @@ public class Quiz extends AppCompatActivity {
         mButtonChoice2.setText(mQuestion.getChoice2(mQuestionNumber));
         mButtonChoice3.setText(mQuestion.getChoice3(mQuestionNumber));
         mButtonChoice4.setText(mQuestion.getChoice4(mQuestionNumber));
+        mQuestionNumber++;
 
         mAnswer = mQuestion.getCorrectAnswer(mQuestionNumber);
     }
