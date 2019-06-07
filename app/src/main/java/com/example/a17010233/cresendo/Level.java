@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class Level extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         play = findViewById(R.id.btnOrder);
         back = findViewById(R.id.back);
@@ -80,8 +84,20 @@ public class Level extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), Quiz.class);
-                startActivity(intent);
+                if (viewPager.getCurrentItem() == 0) {
+                    Intent intent = new Intent(getBaseContext(), Quiz.class);
+                    startActivity(intent);
+                } else if (viewPager.getCurrentItem() == 1) {
+                    Intent intent = new Intent(getBaseContext(), Intermediate.class);
+                    startActivity(intent);
+                } else if (viewPager.getCurrentItem() == 2) {
+                    Intent intent = new Intent(getBaseContext(), Advance.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getBaseContext(), Insance.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

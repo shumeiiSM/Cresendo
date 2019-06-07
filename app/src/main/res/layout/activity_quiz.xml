@@ -1,95 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenb"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context=".Quiz">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/arrow_back"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/level"
-        android:text="Easy"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/arrow_back" />
 
-    <TextView
-        android:id="@+id/score_name"
-        android:text="Score"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="300dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Easy"
+            android:textColor="#fff"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/score"
-        android:textSize="20sp"
-        android:text="0"
-        android:textColor="#fff"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="360dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/score_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginRight="50dp"
+            android:text="Score"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginRight="10dp"
+            android:text="0"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="55dp"
+            android:text="Question 1"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="35dp"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:text="00:30"
+            android:textColor="#fff"
+            android:textSize="40sp" />
+    </FrameLayout>
+
 
     <ImageView
         android:id="@+id/questImage"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="130dp"
-        android:background="@drawable/treble_c"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/treble_c" />
+
+    <RadioGroup
+        android:id="@+id/rbGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/first"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/quiz"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:text="A1" />
+
+            <RadioButton
+                android:id="@+id/second"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/quiz"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:text="B2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/third"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="end"
+                android:background="@drawable/quiz"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:text="C3" />
+
+            <RadioButton
+                android:id="@+id/fourth"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="end"
+                android:background="@drawable/quiz"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:text="D4"/>
+
+        </LinearLayout>
+
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/firstbtn"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="450dp"
         android:background="@drawable/quiz"
-        android:layout_width="180dp"
-        android:layout_height="100dp" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/secondbtn"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="450dp"
         android:background="@drawable/quiz"
-        android:layout_width="180dp"
-        android:layout_height="100dp" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/thirdbtn"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="580dp"
         android:background="@drawable/quiz"
-        android:layout_width="180dp"
-        android:layout_height="100dp" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/fourthbtn"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="580dp"
         android:background="@drawable/quiz"
-        android:layout_width="180dp"
-        android:layout_height="100dp" />
+        android:visibility="invisible" />
 
 
-
-
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

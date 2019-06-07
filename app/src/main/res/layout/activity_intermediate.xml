@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blueb"
+    tools:context=".Intermediate">
+
+    <Button
+        android:id="@+id/back"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arrow_back"/>
+
+    <TextView
+        android:id="@+id/level"
+        android:text="Intermediate"
+        android:textColor="#fff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/score_name"
+        android:text="Score"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/score"
+        android:textSize="20sp"
+        android:text="0"
+        android:textColor="#fff"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/questImage"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/treble_c"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/firstbtn"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/quiz"
+        android:layout_width="180dp"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/secondbtn"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/quiz"
+        android:layout_width="180dp"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/thirdbtn"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="580dp"
+        android:background="@drawable/quiz"
+        android:layout_width="180dp"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/fourthbtn"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="580dp"
+        android:background="@drawable/quiz"
+        android:layout_width="180dp"
+        android:layout_height="100dp" />
+
+</RelativeLayout>
