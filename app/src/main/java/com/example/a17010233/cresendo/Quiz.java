@@ -22,6 +22,7 @@ public class Quiz extends AppCompatActivity {
 
     //private Question mQuestion = new Question();
     private Button btnBack;
+    private Button btnConfirm;
     private TextView mScoreView;
     private TextView mTiming;
     private TextView mQuestionNum;
@@ -43,11 +44,6 @@ public class Quiz extends AppCompatActivity {
     private boolean answered;
 
 
-//    private String mAnswer;
-//    private int mScore = 0;
-//    private int mQuestionNumber = 0;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +53,7 @@ public class Quiz extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         btnBack = findViewById(R.id.back);
+        btnConfirm = findViewById(R.id.btnConfirm);
         mScoreView = findViewById(R.id.score);
         mTiming = findViewById(R.id.time);
         mQuestionNum = findViewById(R.id.question);
@@ -76,7 +73,6 @@ public class Quiz extends AppCompatActivity {
         });
 
 
-
         textColorDefaultRb = mButtonChoice1.getTextColors();
 
         Helper dbHelper = new Helper(this);
@@ -87,115 +83,20 @@ public class Quiz extends AppCompatActivity {
 
         showNextQuestion();
 
-        if(!answered) {
-            if(mButtonChoice1.isChecked() || mButtonChoice2.isChecked() || mButtonChoice3.isChecked() || mButtonChoice4.isChecked()) {
-                checkAnswer();
-            } else {
-                Toast.makeText(Quiz.this, "Please choose 1 answer", Toast.LENGTH_SHORT).show();
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!answered) {
+                    if(mButtonChoice1.isChecked() || mButtonChoice2.isChecked() || mButtonChoice3.isChecked() || mButtonChoice4.isChecked()) {
+                        checkAnswer();
+                    } else {
+                        Toast.makeText(Quiz.this, "Please choose 1 answer", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    showNextQuestion();
+                }
             }
-        } else {
-            showNextQuestion();
-        }
-
-
-//        updateQuestion();
-//
-//        // Start Button Listener for 1st Button
-//        mButtonChoice1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (mButtonChoice1.getText() == mAnswer) {
-//                    mScore = mScore + 1;
-//                    updateScore(mScore);
-//                    updateQuestion();
-//
-//                    Button btn1 = findViewById(R.id.firstbtn);
-//                    btn1.setTextColor(Color.green(1));
-//
-//                    Toast.makeText(Quiz.this, "Correct!", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    Button btn1 = findViewById(R.id.firstbtn);
-//                    btn1.setTextColor(Color.red(1));
-//
-//                    Toast.makeText(Quiz.this, "Wrong!", Toast.LENGTH_LONG).show();
-//                    updateQuestion();
-//                }
-//            }
-//        });
-//
-//        // Start Button Listener for 2nd Button
-//        mButtonChoice2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (mButtonChoice2.getText() == mAnswer) {
-//                    mScore = mScore + 1;
-//                    updateScore(mScore);
-//                    updateQuestion();
-//
-//                    Button btn2 = findViewById(R.id.secondbtn);
-//                    btn2.setTextColor(Color.green(1));
-//
-//                    Toast.makeText(Quiz.this, "Correct!", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    Button btn2 = findViewById(R.id.secondbtn);
-//                    btn2.setTextColor(Color.red(1));
-//
-//                    Toast.makeText(Quiz.this, "Wrong!", Toast.LENGTH_LONG).show();
-//                    updateQuestion();
-//                }
-//            }
-//        });
-//
-//        // Start Button Listener for 3rd Button
-//        mButtonChoice3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (mButtonChoice3.getText() == mAnswer) {
-//                    mScore = mScore + 1;
-//                    updateScore(mScore);
-//                    updateQuestion();
-//
-//                    Button btn3 = findViewById(R.id.thirdbtn);
-//                    btn3.setTextColor(Color.green(1));
-//
-//                    Toast.makeText(Quiz.this, "Correct!", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    Button btn3 = findViewById(R.id.thirdbtn);
-//                    btn3.setTextColor(Color.red(1));
-//
-//                    Toast.makeText(Quiz.this, "Wrong!", Toast.LENGTH_LONG).show();
-//                    updateQuestion();
-//                }
-//            }
-//        });
-//
-//        // Start Button Listener for 4th Button
-//        mButtonChoice4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (mButtonChoice4.getText() == mAnswer) {
-//                    mScore = mScore + 1;
-//                    updateScore(mScore);
-//                    updateQuestion();
-//
-//                    Button btn4 = findViewById(R.id.fourthbtn);
-//                    btn4.setTextColor(Color.green(1));
-//
-//                    Toast.makeText(Quiz.this, "Correct!", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    Button btn4 = findViewById(R.id.fourthbtn);
-//                    btn4.setTextColor(Color.red(1));
-//
-//                    Toast.makeText(Quiz.this, "Wrong!", Toast.LENGTH_LONG).show();
-//                    updateQuestion();
-//                }
-//            }
-//        });
-
+        });
 
     }
 
@@ -204,7 +105,12 @@ public class Quiz extends AppCompatActivity {
         mButtonChoice2.setTextColor(textColorDefaultRb);
         mButtonChoice3.setTextColor(textColorDefaultRb);
         mButtonChoice4.setTextColor(textColorDefaultRb);
-        rbGroup.clearCheck();
+        //rbGroup.clearCheck();
+        mButtonChoice1.setChecked(false);
+        mButtonChoice2.setChecked(false);
+        mButtonChoice3.setChecked(false);
+        mButtonChoice4.setChecked(false);
+
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
@@ -229,24 +135,49 @@ public class Quiz extends AppCompatActivity {
 
     private void checkAnswer() {
         answered = true;
+
+        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
+        int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
+        int a = currentQuestion.getAnswer();
+
+        if (answerNr == currentQuestion.getAnswer()) {
+            score++;
+            mScoreView.setText(score);
+        }
+
+        showSolution();
+
+    }
+
+    private void showSolution() {
+        mButtonChoice1.setTextColor(Color.RED);
+        mButtonChoice2.setTextColor(Color.RED);
+        mButtonChoice3.setTextColor(Color.RED);
+        mButtonChoice4.setTextColor(Color.RED);
+
+        switch (currentQuestion.getAnswer()) {
+            case 1:
+                mButtonChoice1.setTextColor(Color.GREEN);
+                break;
+            case 2:
+                mButtonChoice2.setTextColor(Color.GREEN);
+                break;
+            case 3:
+                mButtonChoice3.setTextColor(Color.GREEN);
+                break;
+            case 4:
+                mButtonChoice4.setTextColor(Color.GREEN);
+                break;
+        }
+
+        if (questionCounter < questionCountTotal) {
+            btnConfirm.setText("Next");
+        } else {
+            btnConfirm.setText("Finish");
+        }
     }
 
     private void finishQuiz() {
         finish();
     }
-
-//    private void updateQuestion() { ;
-//        mImageView.setImageDrawable(mQuestion);
-//        mButtonChoice1.setText(mQuestion.getChoice1(mQuestionNumber));
-//        mButtonChoice2.setText(mQuestion.getChoice2(mQuestionNumber));
-//        mButtonChoice3.setText(mQuestion.getChoice3(mQuestionNumber));
-//        mButtonChoice4.setText(mQuestion.getChoice4(mQuestionNumber));
-//        mQuestionNumber++;
-//
-//        mAnswer = mQuestion.getCorrectAnswer(mQuestionNumber);
-//    }
-//
-//    private void updateScore(int point) {
-//        mScoreView.setText("" + mScore);
-//    }
 }

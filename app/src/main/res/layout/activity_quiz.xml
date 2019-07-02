@@ -97,12 +97,11 @@
                 android:id="@+id/first"
                 android:layout_width="180dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/quiz"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="35sp"
-                android:text="A1" />
+                android:textSize="35sp" />
 
             <RadioButton
                 android:id="@+id/second"
@@ -112,8 +111,7 @@
                 android:background="@drawable/quiz"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="35sp"
-                android:text="B2" />
+                android:textSize="35sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,13 +123,12 @@
                 android:id="@+id/third"
                 android:layout_width="180dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:layout_gravity="end"
                 android:background="@drawable/quiz"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="35sp"
-                android:text="C3" />
+                android:textSize="35sp" />
 
             <RadioButton
                 android:id="@+id/fourth"
@@ -142,49 +139,19 @@
                 android:background="@drawable/quiz"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="35sp"
-                android:text="D4"/>
+                android:textSize="35sp" />
 
         </LinearLayout>
-
-
     </RadioGroup>
 
     <Button
-        android:id="@+id/firstbtn"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="450dp"
-        android:background="@drawable/quiz"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/secondbtn"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="450dp"
-        android:background="@drawable/quiz"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/thirdbtn"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="580dp"
-        android:background="@drawable/quiz"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/fourthbtn"
-        android:layout_width="180dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="580dp"
-        android:background="@drawable/quiz"
-        android:visibility="invisible" />
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/confirm"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:text="CONFIRM"/>
 
 
 </LinearLayout>
