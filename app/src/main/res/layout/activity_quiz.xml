@@ -79,8 +79,8 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="35dp"
-        android:layout_marginLeft="50dp"
-        android:background="@drawable/treble_c" />
+        android:layout_marginLeft="50dp"/>
+        <!--android:background="@drawable/treble_c" />-->
 
     <RadioGroup
         android:id="@+id/rbGroup"

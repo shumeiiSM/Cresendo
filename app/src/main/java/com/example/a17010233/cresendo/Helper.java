@@ -29,19 +29,19 @@ public class Helper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         this.db = db;
 
-        final String SQL_CREATE_QUESTION_TABLE = "CREATE TABLE " +
-                QuestionsTable.TABLE_NAME + " ( " +
-                QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                QuestionsTable.COLUMN_QUESTION + " TEXT, " +
+        final String createdTableSql = "CREATE TABLE " +
+                QuestionsTable.TABLE_NAME + "(" +
+                QuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                QuestionsTable.COLUMN_QUESTION + " TEXT," +
                 QuestionsTable.COLUMN_OPT1 + " TEXT," +
                 QuestionsTable.COLUMN_OPT2 + " TEXT," +
                 QuestionsTable.COLUMN_OPT3 + " TEXT," +
                 QuestionsTable.COLUMN_OPT4 + " TEXT," +
-                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER " +
+                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" +
                 ")";
 
 
-        db.execSQL(SQL_CREATE_QUESTION_TABLE);
+        db.execSQL(createdTableSql);
         fillQuestionsTable();
         Log.i("info", "created tables");
     }
@@ -54,15 +54,15 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question_Easy q1 = new Question_Easy("A is correct", "A-", "B", "C", "D", 1);
+        Question_Easy q1 = new Question_Easy("treble_a", "A", "B", "C", "D", 1);
         addQuestion(q1);
-        Question_Easy q2 = new Question_Easy("B is correct", "A", "B-", "C", "D", 2);
+        Question_Easy q2 = new Question_Easy("treble_b", "A", "B", "C", "D", 2);
         addQuestion(q2);
-        Question_Easy q3 = new Question_Easy("C is correct", "A", "B", "C-", "D", 3);
+        Question_Easy q3 = new Question_Easy("treble_c", "A", "B", "C", "D", 3);
         addQuestion(q3);
-        Question_Easy q4 = new Question_Easy("D is correct", "A", "B", "C", "D-", 4);
+        Question_Easy q4 = new Question_Easy("treble_d", "A", "B", "C", "D", 4);
         addQuestion(q4);
-        Question_Easy q5 = new Question_Easy("A is correct again", "A+", "B", "C", "D", 1);
+        Question_Easy q5 = new Question_Easy("treble_e", "E", "B", "C", "D", 1);
         addQuestion(q5);
 
     }
