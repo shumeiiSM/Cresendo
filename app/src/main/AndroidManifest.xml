@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Insance"></activity>
+        <activity android:name=".Leader" />
+        <activity android:name=".Learn" />
+        <activity android:name=".Insance" />
         <activity android:name=".Advance" />
         <activity android:name=".Intermediate" />
         <activity android:name=".Quiz" />

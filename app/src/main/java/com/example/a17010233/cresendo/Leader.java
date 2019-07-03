@@ -1,0 +1,38 @@
+package com.example.a17010233.cresendo;
+
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.WindowManager;
+
+
+public class Leader extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_leader);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        viewPager = findViewById(R.id.container);
+        tabLayout = findViewById(R.id.tabs);
+
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        // Add Fragment
+        adapter.addFrag(new EasyFragment(), "EASY");
+        adapter.addFrag(new IntermediateFragment(), "INTER");
+        adapter.addFrag(new AdvanceFragment(), "ADVANCE");
+        adapter.addFrag(new InsaneFragment(), "INSANE");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+    }
+}

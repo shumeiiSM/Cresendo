@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 public class MainActivity extends AppCompatActivity {
 
     RelativeLayout rellay1;
-    Button btnPlay;
+    Button btnPlay, btnLearn, btnLeader;;
 
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         btnPlay = findViewById(R.id.play);
+        btnLearn = findViewById(R.id.learn);
+        btnLeader = findViewById(R.id.leader);
 
         handler.postDelayed(runnable, 2000);
 
@@ -40,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), Level.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLearn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), Learn.class);
+                startActivity(intent);
+            }
+        });
+
+        btnLeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), Leader.class);
                 startActivity(intent);
             }
         });
