@@ -40,7 +40,7 @@ public class Quiz extends AppCompatActivity {
     private int questionCountTotal;
     private Question_Easy currentQuestion;
 
-    private int score;
+    private int myscore;
     private boolean answered;
 
 
@@ -136,13 +136,15 @@ public class Quiz extends AppCompatActivity {
     private void checkAnswer() {
         answered = true;
 
+        mScoreView = findViewById(R.id.score);
+
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
         int a = currentQuestion.getAnswer();
 
         if (answerNr == currentQuestion.getAnswer()) {
-            score++;
-            mScoreView.setText(score);
+            myscore++;
+            mScoreView.setText(String.valueOf(myscore));
         }
 
         showSolution();

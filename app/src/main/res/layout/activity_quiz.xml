@@ -33,8 +33,8 @@
             android:id="@+id/score_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:layout_marginRight="50dp"
+            android:gravity="end"
             android:text="Score"
             android:textColor="#fff"
             android:textSize="20sp" />
@@ -43,8 +43,8 @@
             android:id="@+id/score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:layout_marginRight="10dp"
+            android:gravity="end"
             android:text="0"
             android:textColor="#fff"
             android:textSize="20sp" />
@@ -64,13 +64,13 @@
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="35dp"
+            android:layout_marginRight="10dp"
             android:gravity="end"
-            android:textStyle="bold"
             android:text="00:30"
             android:textColor="#fff"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
     </FrameLayout>
 
 
@@ -78,80 +78,67 @@
         android:id="@+id/questImage"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="50dp"/>
-        <!--android:background="@drawable/treble_c" />-->
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="35dp" />
+    <!--android:background="@drawable/treble_c" />-->
 
     <RadioGroup
         android:id="@+id/rbGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/first"
-                android:layout_width="180dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/quiz"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="35sp" />
-
-            <RadioButton
-                android:id="@+id/second"
-                android:layout_width="180dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/quiz"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="35sp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RadioButton
+            android:id="@+id/first"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="55dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/quiz"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/third"
-                android:layout_width="180dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="end"
-                android:background="@drawable/quiz"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="35sp" />
+        <RadioButton
+            android:id="@+id/second"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/quiz"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/fourth"
-                android:layout_width="180dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="30dp"
-                android:layout_gravity="end"
-                android:background="@drawable/quiz"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="35sp" />
+        <RadioButton
+            android:id="@+id/third"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/quiz"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
-        </LinearLayout>
+        <RadioButton
+            android:id="@+id/fourth"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/quiz"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/confirm"
-        android:textColor="@android:color/white"
         android:layout_marginTop="10dp"
-        android:text="CONFIRM"/>
+        android:background="@drawable/confirm"
+        android:text="CONFIRM"
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>

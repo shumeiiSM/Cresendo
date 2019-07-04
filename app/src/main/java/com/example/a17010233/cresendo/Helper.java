@@ -54,15 +54,15 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question_Easy q1 = new Question_Easy("treble_a", "A", "B", "C", "D", 1);
+        Question_Easy q1 = new Question_Easy("treble_a", "A", "B", "C", "D", 0);
         addQuestion(q1);
-        Question_Easy q2 = new Question_Easy("treble_b", "A", "B", "C", "D", 2);
+        Question_Easy q2 = new Question_Easy("treble_b", "A", "B", "C", "D", 1);
         addQuestion(q2);
-        Question_Easy q3 = new Question_Easy("treble_c", "A", "B", "C", "D", 3);
+        Question_Easy q3 = new Question_Easy("treble_c", "A", "B", "C", "D", 2);
         addQuestion(q3);
-        Question_Easy q4 = new Question_Easy("treble_d", "A", "B", "C", "D", 4);
+        Question_Easy q4 = new Question_Easy("treble_d", "A", "B", "C", "D", 3);
         addQuestion(q4);
-        Question_Easy q5 = new Question_Easy("treble_e", "E", "B", "C", "D", 1);
+        Question_Easy q5 = new Question_Easy("treble_e", "E", "B", "C", "D", 0);
         addQuestion(q5);
 
     }
