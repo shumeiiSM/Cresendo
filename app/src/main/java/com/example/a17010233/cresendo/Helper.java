@@ -37,8 +37,8 @@ public class Helper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPT2 + " TEXT," +
                 QuestionsTable.COLUMN_OPT3 + " TEXT," +
                 QuestionsTable.COLUMN_OPT4 + " TEXT," +
-                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" +
-                ")";
+                QuestionsTable.COLUMN_ANSWER_NR + " INTEGER," +
+                QuestionsTable.COLUMN_SOUND + " TEXT)";
 
 
         db.execSQL(createdTableSql);
@@ -54,15 +54,15 @@ public class Helper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question_Easy q1 = new Question_Easy("treble_a", "A", "B", "C", "D", 0);
+        Question_Easy q1 = new Question_Easy("treble_a", "A", "B", "C", "D", 0, "option1");
         addQuestion(q1);
-        Question_Easy q2 = new Question_Easy("treble_b", "A", "B", "C", "D", 1);
+        Question_Easy q2 = new Question_Easy("treble_b", "A", "B", "C", "D", 1, "option2");
         addQuestion(q2);
-        Question_Easy q3 = new Question_Easy("treble_c", "A", "B", "C", "D", 2);
+        Question_Easy q3 = new Question_Easy("treble_c", "A", "B", "C", "D", 2, "option3");
         addQuestion(q3);
-        Question_Easy q4 = new Question_Easy("treble_d", "A", "B", "C", "D", 3);
+        Question_Easy q4 = new Question_Easy("treble_d", "A", "B", "C", "D", 3, "option4");
         addQuestion(q4);
-        Question_Easy q5 = new Question_Easy("treble_e", "E", "B", "C", "D", 0);
+        Question_Easy q5 = new Question_Easy("treble_e", "E", "B", "C", "D", 0, "option5");
         addQuestion(q5);
 
     }
@@ -76,6 +76,7 @@ public class Helper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPT3, question_easy.getOpt3());
         cv.put(QuestionsTable.COLUMN_OPT4, question_easy.getOpt4());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question_easy.getAnswer());
+        cv.put(QuestionsTable.COLUMN_SOUND, question_easy.getSound());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
@@ -93,6 +94,7 @@ public class Helper extends SQLiteOpenHelper {
                 question_easy.setOpt3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPT3)));
                 question_easy.setOpt4(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPT4)));
                 question_easy.setAnswer(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
+                question_easy.setSound(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_SOUND)));
                 questionList.add(question_easy);
 
             } while (c.moveToNext());

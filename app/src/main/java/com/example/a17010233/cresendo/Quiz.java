@@ -1,9 +1,11 @@
 package com.example.a17010233.cresendo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +34,7 @@ public class Quiz extends AppCompatActivity {
     private RadioButton mButtonChoice2;
     private RadioButton mButtonChoice3;
     private RadioButton mButtonChoice4;
+    private ImageView sound;
 
     private ColorStateList textColorDefaultRb;
 
@@ -63,6 +66,7 @@ public class Quiz extends AppCompatActivity {
         mButtonChoice2 = findViewById(R.id.second);
         mButtonChoice3 = findViewById(R.id.third);
         mButtonChoice4 = findViewById(R.id.fourth);
+        sound = findViewById(R.id.sound);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,13 +121,25 @@ public class Quiz extends AppCompatActivity {
 
             Resources res = getResources();
             String qns = currentQuestion.getQuestion();
-            int resID = res.getIdentifier(qns , "drawable", getPackageName());
+            final int resID = res.getIdentifier(qns , "drawable", getPackageName());
             mImageView.setImageResource(resID);
 
             mButtonChoice1.setText(currentQuestion.getOpt1());
             mButtonChoice2.setText(currentQuestion.getOpt2());
             mButtonChoice3.setText(currentQuestion.getOpt3());
             mButtonChoice4.setText(currentQuestion.getOpt4());
+
+            sound.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Context context = getApplicationContext();
+                    int resId = getResources().getIdentifier(currentQuestion.getSound(), "raw", context.getPackageName());
+
+                    final MediaPlayer van = MediaPlayer.create(getApplicationContext(), resId);
+                    van.start();
+                }
+            });
 
             questionCounter++;
             mQuestionNum.setText("Question: " + questionCounter + "/" + questionCountTotal);
@@ -139,7 +155,7 @@ public class Quiz extends AppCompatActivity {
         mScoreView = findViewById(R.id.score);
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
-        int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
+        int answerNr = rbGroup.indexOfChild(rbSelected);
         int a = currentQuestion.getAnswer();
 
         if (answerNr == currentQuestion.getAnswer()) {
@@ -158,16 +174,16 @@ public class Quiz extends AppCompatActivity {
         mButtonChoice4.setTextColor(Color.RED);
 
         switch (currentQuestion.getAnswer()) {
-            case 1:
+            case 0:
                 mButtonChoice1.setTextColor(Color.GREEN);
                 break;
-            case 2:
+            case 1:
                 mButtonChoice2.setTextColor(Color.GREEN);
                 break;
-            case 3:
+            case 2:
                 mButtonChoice3.setTextColor(Color.GREEN);
                 break;
-            case 4:
+            case 3:
                 mButtonChoice4.setTextColor(Color.GREEN);
                 break;
         }

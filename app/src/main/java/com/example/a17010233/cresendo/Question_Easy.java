@@ -7,16 +7,19 @@ public class Question_Easy {
     private String opt3;
     private String opt4;
     private int answer;
+    private String sound;
+
 
     public Question_Easy() {}
 
-    public Question_Easy(String question, String opt1, String opt2, String opt3, String opt4, int answer) {
+    public Question_Easy(String question, String opt1, String opt2, String opt3, String opt4, int answer, String sound) {
         this.question = question;
         this.opt1 = opt1;
         this.opt2 = opt2;
         this.opt3 = opt3;
         this.opt4 = opt4;
         this.answer = answer;
+        this.sound = sound;
     }
 
     public String getQuestion() {
@@ -65,5 +68,13 @@ public class Question_Easy {
 
     public void setAnswer(int answer) {
         this.answer = answer;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 }

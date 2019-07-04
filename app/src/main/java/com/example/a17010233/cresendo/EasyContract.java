@@ -14,6 +14,7 @@ public final class EasyContract {
         public static final String COLUMN_OPT3 = "opt3";
         public static final String COLUMN_OPT4 = "opt4";
         public static final String COLUMN_ANSWER_NR = "answer";
+        public static final String COLUMN_SOUND = "sound";
 
 
     }

@@ -2,6 +2,7 @@ package com.example.a17010233.cresendo;
 
 import android.animation.ArgbEvaluator;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import java.util.List;
 public class Level extends AppCompatActivity {
 
     Button play;
-    Button back;
+    Button back, sound;
 
     ViewPager viewPager;
     Adapter adapter;
@@ -33,6 +34,16 @@ public class Level extends AppCompatActivity {
 
         play = findViewById(R.id.btnOrder);
         back = findViewById(R.id.back);
+        sound = findViewById(R.id.sound);
+
+        final MediaPlayer van = MediaPlayer.create(getApplicationContext(), R.raw.vanessa);
+
+        sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                van.start();
+            }
+        });
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.green, "Easy", "The level of Easy."));
