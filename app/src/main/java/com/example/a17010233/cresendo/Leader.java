@@ -1,14 +1,18 @@
 package com.example.a17010233.cresendo;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 
 public class Leader extends AppCompatActivity {
 
+    Button btnBack;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
@@ -23,6 +27,7 @@ public class Leader extends AppCompatActivity {
 
         viewPager = findViewById(R.id.container);
         tabLayout = findViewById(R.id.tabs);
+        btnBack = findViewById(R.id.back);
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
@@ -33,6 +38,16 @@ public class Leader extends AppCompatActivity {
         adapter.addFrag(new InsaneFragment(), "INSANE");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 }

@@ -24,6 +24,8 @@ public class Level extends AppCompatActivity {
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
+    private static final int REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +99,7 @@ public class Level extends AppCompatActivity {
             public void onClick(View view) {
                 if (viewPager.getCurrentItem() == 0) {
                     Intent intent = new Intent(getBaseContext(), Quiz.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE);
                 } else if (viewPager.getCurrentItem() == 1) {
                     Intent intent = new Intent(getBaseContext(), Intermediate.class);
                     startActivity(intent);

@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +18,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class Quiz extends AppCompatActivity {
+    private static final long COUNTDOWN_IN_MILIS = 10000;
 
-    //private Question mQuestion = new Question();
+
     private Button btnBack;
     private Button btnConfirm;
     private TextView mScoreView;
@@ -37,6 +43,10 @@ public class Quiz extends AppCompatActivity {
     private ImageView sound;
 
     private ColorStateList textColorDefaultRb;
+    private ColorStateList textColorDefaultCd;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMilis;
 
     private List<Question_Easy> questionList;
     private int questionCounter;
@@ -78,6 +88,7 @@ public class Quiz extends AppCompatActivity {
 
 
         textColorDefaultRb = mButtonChoice1.getTextColors();
+        textColorDefaultCd = mTiming.getTextColors();
 
         Helper dbHelper = new Helper(this);
         questionList = dbHelper.getAllQuestions();
@@ -144,13 +155,54 @@ public class Quiz extends AppCompatActivity {
             questionCounter++;
             mQuestionNum.setText("Question: " + questionCounter + "/" + questionCountTotal);
             answered = false;
+            btnConfirm.setText("Confirm");
+
+            timeLeftInMilis = COUNTDOWN_IN_MILIS;
+            startCountDown();
+
         } else {
             finishQuiz();
         }
     }
 
+    private void startCountDown() {
+        countDownTimer = new CountDownTimer(timeLeftInMilis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMilis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMilis = 0;
+                updateCountDownText();
+                checkAnswer();
+            }
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        int mins = (int) (timeLeftInMilis / 1000) / 60;
+        int secs = (int) (timeLeftInMilis / 1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", mins, secs);
+
+        mTiming.setText(timeFormatted);
+
+        if (timeLeftInMilis <= 3000) {
+            mTiming.setTextColor(Color.RED);
+        } else if (timeLeftInMilis <= 5000) {
+            mTiming.setTextColor(Color.YELLOW);
+        } else {
+            mTiming.setTextColor(textColorDefaultCd);
+        }
+    }
+
     private void checkAnswer() {
         answered = true;
+
+        countDownTimer.cancel();
 
         mScoreView = findViewById(R.id.score);
 
@@ -196,6 +248,33 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void finishQuiz() {
-        finish();
+        SimpleDateFormat date = new SimpleDateFormat("EEE, d MMM yyyy");
+        SimpleDateFormat time = new SimpleDateFormat("h:mm a");
+        String cDate = date.format(new Date());
+        String cTime = time.format(new Date());
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("fscore", myscore);
+        bundle.putString("date", cDate);
+        bundle.putString("time", cTime);
+        // set MyFragment Arguments
+        EasyFragment myObj = new EasyFragment();
+        myObj.setArguments(bundle);
+
+        Intent i = new Intent(getApplicationContext(), EndEQuiz.class);
+        i.putExtra("fscore", myscore);
+
+        //setResult(RESULT_OK, i);
+        //finish();
+
+        startActivity(i);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
     }
 }
