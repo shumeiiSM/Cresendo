@@ -28,6 +28,7 @@ import java.util.Locale;
 public class Quiz extends AppCompatActivity {
     private static final long COUNTDOWN_IN_MILIS = 10000;
 
+    private TextView tvLevel;
 
     private Button btnBack;
     private Button btnConfirm;
@@ -65,6 +66,8 @@ public class Quiz extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        tvLevel = findViewById(R.id.level);
+
         btnBack = findViewById(R.id.back);
         btnConfirm = findViewById(R.id.btnConfirm);
         mScoreView = findViewById(R.id.score);
@@ -91,7 +94,7 @@ public class Quiz extends AppCompatActivity {
         textColorDefaultCd = mTiming.getTextColors();
 
         Helper dbHelper = new Helper(this);
-        questionList = dbHelper.getAllQuestions();
+        questionList = dbHelper.getQuestions("Easy");
 
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
@@ -211,7 +214,7 @@ public class Quiz extends AppCompatActivity {
         int a = currentQuestion.getAnswer();
 
         if (answerNr == currentQuestion.getAnswer()) {
-            myscore++;
+            myscore = myscore + 100;
             mScoreView.setText(String.valueOf(myscore));
         }
 
@@ -261,8 +264,10 @@ public class Quiz extends AppCompatActivity {
         EasyFragment myObj = new EasyFragment();
         myObj.setArguments(bundle);
 
-        Intent i = new Intent(getApplicationContext(), EndEQuiz.class);
+        Intent i = new Intent(getApplicationContext(), EndQuiz.class);
+        String myLevel = tvLevel.getText().toString();
         i.putExtra("fscore", myscore);
+        i.putExtra("level", myLevel);
 
         //setResult(RESULT_OK, i);
         //finish();

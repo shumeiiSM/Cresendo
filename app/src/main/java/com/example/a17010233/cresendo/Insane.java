@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class Intermediate extends AppCompatActivity {
+public class Insane extends AppCompatActivity {
     private static final long COUNTDOWN_IN_MILIS = 10000;
 
     private TextView tvLevel;
@@ -61,7 +61,7 @@ public class Intermediate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intermediate);
+        setContentView(R.layout.activity_insane);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -94,7 +94,7 @@ public class Intermediate extends AppCompatActivity {
         textColorDefaultCd = mTiming.getTextColors();
 
         Helper dbHelper = new Helper(this);
-        questionList = dbHelper.getQuestions("Intermediate");
+        questionList = dbHelper.getQuestions("Insane");
 
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
@@ -108,7 +108,7 @@ public class Intermediate extends AppCompatActivity {
                     if(mButtonChoice1.isChecked() || mButtonChoice2.isChecked() || mButtonChoice3.isChecked() || mButtonChoice4.isChecked()) {
                         checkAnswer();
                     } else {
-                        Toast.makeText(Intermediate.this, "Please choose 1 answer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Insane.this, "Please choose 1 answer", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     showNextQuestion();

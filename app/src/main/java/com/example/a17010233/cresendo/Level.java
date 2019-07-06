@@ -1,6 +1,5 @@
 package com.example.a17010233.cresendo;
 
-import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v4.view.ViewPager;
@@ -138,7 +137,7 @@ public class Level extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), Advance.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(getBaseContext(), Insance.class);
+                    Intent intent = new Intent(getBaseContext(), Insane.class);
                     startActivity(intent);
                 }
 
