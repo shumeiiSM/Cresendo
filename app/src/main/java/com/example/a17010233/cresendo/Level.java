@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,12 @@ public class Level extends AppCompatActivity {
     Button play;
     Button back, sound;
 
+    ImageView ivBack;
     ViewPager viewPager;
     Adapter adapter;
     List<Model> models;
-    Integer[] colors = null;
-    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    //Integer[] colors = null;
+    //ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     private static final int REQUEST_CODE = 1;
 
@@ -34,6 +36,7 @@ public class Level extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        ivBack = findViewById(R.id.ivBack);
         play = findViewById(R.id.btnOrder);
         back = findViewById(R.id.back);
         sound = findViewById(R.id.sound);
@@ -59,40 +62,68 @@ public class Level extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setPadding(130,0,130,0);
 
-        Integer[] colors_temp = {
-                getResources().getColor(R.color.color1),
-                getResources().getColor(R.color.color2),
-                getResources().getColor(R.color.color3),
-                getResources().getColor(R.color.color4)
-        };
+//        Integer[] colors_temp = {
+//                getResources().getColor(R.color.color1),
+//                getResources().getColor(R.color.color2),
+//                getResources().getColor(R.color.color3),
+//                getResources().getColor(R.color.color4)
+//        };
 
-        colors = colors_temp;
+        //Integer[] images = {R.drawable.mygreen, R.drawable.myblue, R.drawable.myred, R.drawable.myblack};
 
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        //colors = colors_temp;
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position < (adapter.getCount() -1) && position < (colors.length -1)) {
-                    viewPager.setBackgroundColor(
-                            (Integer) argbEvaluator.evaluate(
-                                    positionOffset,
-                                    colors[position],
-                                    colors[position + 1]
-                            ));
+            public void onPageScrolled(int i, float v, int i1) {
+                if (viewPager.getCurrentItem() == 0) {
+                    ivBack.setImageResource(R.drawable.mygreen);
+                } else if (viewPager.getCurrentItem() == 1) {
+                    ivBack.setImageResource(R.drawable.myblue);
+                } else if (viewPager.getCurrentItem() == 2) {
+                    ivBack.setImageResource(R.drawable.myred);
                 } else {
-                    viewPager.setBackgroundColor(colors[colors.length - 1]);
+                    ivBack.setImageResource(R.drawable.myblack);
                 }
             }
 
             @Override
-            public void onPageSelected(int position) {
+            public void onPageSelected(int i) {
 
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrollStateChanged(int i) {
 
             }
         });
+
+
+
+//        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                if (position < (adapter.getCount() -1) && position < (colors.length -1)) {
+//                    viewPager.setBackgroundColor(
+//                            (Integer) argbEvaluator.evaluate(
+//                                    positionOffset,
+//                                    colors[position],
+//                                    colors[position + 1]
+//                            ));
+//                } else {
+//                    viewPager.setBackgroundColor(colors[colors.length - 1]);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
