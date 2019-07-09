@@ -16,7 +16,7 @@ import java.util.List;
 public class Level extends AppCompatActivity {
 
     Button play;
-    Button back, sound;
+    Button back;
 
     ImageView ivBack;
     ViewPager viewPager;
@@ -25,7 +25,7 @@ public class Level extends AppCompatActivity {
     //Integer[] colors = null;
     //ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-    private static final int REQUEST_CODE = 1;
+    //private static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,15 @@ public class Level extends AppCompatActivity {
         ivBack = findViewById(R.id.ivBack);
         play = findViewById(R.id.btnOrder);
         back = findViewById(R.id.back);
-        sound = findViewById(R.id.sound);
 
-        final MediaPlayer van = MediaPlayer.create(getApplicationContext(), R.raw.vanessa);
-
-        sound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                van.start();
-            }
-        });
+//        final MediaPlayer van = MediaPlayer.create(getApplicationContext(), R.raw.vanessa);
+//
+//        sound.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                van.start();
+//            }
+//        });
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.green, "Easy", "The level of Easy."));
@@ -129,7 +128,7 @@ public class Level extends AppCompatActivity {
             public void onClick(View view) {
                 if (viewPager.getCurrentItem() == 0) {
                     Intent intent = new Intent(getBaseContext(), Quiz.class);
-                    startActivityForResult(intent, REQUEST_CODE);
+                    startActivity(intent);
                 } else if (viewPager.getCurrentItem() == 1) {
                     Intent intent = new Intent(getBaseContext(), Intermediate.class);
                     startActivity(intent);

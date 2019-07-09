@@ -7,6 +7,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -150,8 +152,8 @@ public class Quiz extends AppCompatActivity {
                     Context context = getApplicationContext();
                     int resId = getResources().getIdentifier(currentQuestion.getSound(), "raw", context.getPackageName());
 
-                    final MediaPlayer van = MediaPlayer.create(getApplicationContext(), resId);
-                    van.start();
+                    final MediaPlayer mySound = MediaPlayer.create(getApplicationContext(), resId);
+                    mySound.start();
                 }
             });
 
@@ -256,23 +258,23 @@ public class Quiz extends AppCompatActivity {
         String cDate = date.format(new Date());
         String cTime = time.format(new Date());
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("fscore", myscore);
-        bundle.putString("date", cDate);
-        bundle.putString("time", cTime);
-        // set MyFragment Arguments
-        EasyFragment myObj = new EasyFragment();
-        myObj.setArguments(bundle);
-
         Intent i = new Intent(getApplicationContext(), EndQuiz.class);
         String myLevel = tvLevel.getText().toString();
         i.putExtra("fscore", myscore);
         i.putExtra("level", myLevel);
+        startActivity(i);
 
         //setResult(RESULT_OK, i);
         //finish();
 
-        startActivity(i);
+        //startActivity(i);
+
+        Intent leaderIntent = new Intent(getApplicationContext(), Leader.class);
+        leaderIntent.putExtra("fscore", myscore);
+        leaderIntent.putExtra("date", cDate);
+        leaderIntent.putExtra("time", cTime);
+
+
     }
 
     @Override

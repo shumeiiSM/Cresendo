@@ -50,13 +50,4 @@
         android:text="@string/play"
         android:textColor="#fff" />
 
-    <Button
-        android:id="@+id/sound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:text="SOUND"
-        android:visibility="invisible" />
-
-
 </RelativeLayout>

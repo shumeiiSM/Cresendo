@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,18 @@ import android.widget.TextView;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class EasyFragment extends Fragment {
+public class EasyFragment extends Fragment{
 
-    private TextView tv;
-    private ListView lv;
-    private ArrayList<Score> score;
-    private ArrayAdapter aa;
+    TextView tv;
+    ListView lv;
+    ArrayList<Score> score;
+    ArrayAdapter aa;
 
     public EasyFragment() {
         // Required empty public constructor
@@ -45,34 +47,48 @@ public class EasyFragment extends Fragment {
         score.add(new Score("green", "2019", "12PM", 100));
         score.add(new Score("green", "2017", "5PM", 500));
 
+        Bundle bundle = this.getArguments();
         if (getArguments() != null) {
-            int fscore = getArguments().getInt("fscore");
-            String date = getArguments().getString("date");
-            String time = getArguments().getString("time");
+            int fscore = bundle.getInt("fscore");
+            String date = bundle.getString("date");
+            String time = bundle.getString("time");
 
             score.add(new Score("green", time, date, fscore));
+        } else {
+            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
         }
 
         aa = new EasyAdapter(getActivity(), R.layout.leaderboard, score);
         lv.setAdapter(aa);
 
-
         return view;
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.fragment_easy);
+
+        //tv = findViewById(R.id.tv);
+        //ListView lv = findViewById(R.id.lveasy);
+
+//        score = new ArrayList<Score>();
 //
+//        Bundle bundle = getArguments();
 //        if (getArguments() != null) {
-//            int fscore = getArguments().getInt("fscore");
-//            String date = getArguments().getString("date");
-//            String time = getArguments().getString("time");
+//            int fscore = bundle.getInt("fscore");
+//            String date = bundle.getString("date");
+//            String time = bundle.getString("time");
 //
 //            score.add(new Score("green", time, date, fscore));
-//            aa.notifyDataSetChanged();
+//            aa = new EasyAdapter(getActivity(), R.layout.leaderboard, score);
+//            lv.setAdapter(aa);
+//            //aa.notifyDataSetChanged();
+//        } else {
+//            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
+//
 //        }
-//    }
+    }
 
 //    @Override
 //    public void onActivityResult(int requestCode, int
