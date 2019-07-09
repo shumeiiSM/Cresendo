@@ -55,7 +55,16 @@ public class EasyAdapter extends ArrayAdapter<Score> {
         tvTime.setText(currentScore.getTime());
         tvScore.setText(String.valueOf(currentScore.getScore()));
 
-        ivLevel.setImageResource(R.drawable.green);
+        if (currentScore.getImageL().equalsIgnoreCase("green")) {
+            ivLevel.setImageResource(R.drawable.green);
+        } else if (currentScore.getImageL().equalsIgnoreCase("blue")) {
+            ivLevel.setImageResource(R.drawable.blue);
+        } else if (currentScore.getImageL().equalsIgnoreCase("red")) {
+            ivLevel.setImageResource(R.drawable.red);
+        } else {
+            ivLevel.setImageResource(R.drawable.black);
+        }
+
 
         // Return the nicely done up View to the ListView
         return rowView;

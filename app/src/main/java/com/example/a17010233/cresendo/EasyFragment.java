@@ -26,7 +26,7 @@ public class EasyFragment extends Fragment{
     TextView tv;
     ListView lv;
     ArrayList<Score> score;
-    ArrayAdapter aa;
+    ArrayAdapter<Score> aa;
 
     public EasyFragment() {
         // Required empty public constructor
@@ -43,20 +43,9 @@ public class EasyFragment extends Fragment{
         lv = view.findViewById(R.id.lveasy);
 
         score = new ArrayList<Score>();
-        score.add(new Score("green", "2018", "1PM", 300));
-        score.add(new Score("green", "2019", "12PM", 100));
-        score.add(new Score("green", "2017", "5PM", 500));
-
-        Bundle bundle = this.getArguments();
-        if (getArguments() != null) {
-            int fscore = bundle.getInt("fscore");
-            String date = bundle.getString("date");
-            String time = bundle.getString("time");
-
-            score.add(new Score("green", time, date, fscore));
-        } else {
-            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
-        }
+        score.add(new Score("green", "Mon, 20 May 2019", "5:21 PM", 300));
+        score.add(new Score("green", "Thur, 1 Jun 2019", "10:30 AM", 100));
+        score.add(new Score("green", "Tue, 9 Jul 2019", "8:26 PM", 500));
 
         aa = new EasyAdapter(getActivity(), R.layout.leaderboard, score);
         lv.setAdapter(aa);
@@ -65,9 +54,27 @@ public class EasyFragment extends Fragment{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Bundle bundle = this.getArguments();
+        if (getArguments() != null) {
+            int escore = bundle.getInt("escore");
+            String edate = bundle.getString("edate");
+            String etime = bundle.getString("etime");
+
+            score.add(new Score("green", etime, edate, escore));
+            aa.notifyDataSetChanged();
+        } else {
+            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.fragment_easy);
+
+
 
         //tv = findViewById(R.id.tv);
         //ListView lv = findViewById(R.id.lveasy);

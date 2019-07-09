@@ -258,22 +258,24 @@ public class Quiz extends AppCompatActivity {
         String cDate = date.format(new Date());
         String cTime = time.format(new Date());
 
-        Intent i = new Intent(getApplicationContext(), EndQuiz.class);
-        String myLevel = tvLevel.getText().toString();
-        i.putExtra("fscore", myscore);
-        i.putExtra("level", myLevel);
-        startActivity(i);
+        int thescore = myscore;
+
+        Intent leaderIntent = new Intent(getApplicationContext(), Leader.class);
+        leaderIntent.putExtra("escore", thescore);
+        leaderIntent.putExtra("edate", cDate);
+        leaderIntent.putExtra("etime", cTime);
+        startActivity(leaderIntent);
+
+//        Intent i = new Intent(getApplicationContext(), EndQuiz.class);
+//        String myLevel = tvLevel.getText().toString();
+//        i.putExtra("fscore", myscore);
+//        i.putExtra("level", myLevel);
+//        startActivity(i);
 
         //setResult(RESULT_OK, i);
         //finish();
 
         //startActivity(i);
-
-        Intent leaderIntent = new Intent(getApplicationContext(), Leader.class);
-        leaderIntent.putExtra("fscore", myscore);
-        leaderIntent.putExtra("date", cDate);
-        leaderIntent.putExtra("time", cTime);
-
 
     }
 

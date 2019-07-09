@@ -41,20 +41,27 @@ public class Leader extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-//        FragmentManager manager = getSupportFragmentManager();
-//        FragmentTransaction t = manager.beginTransaction();
-//
-//        EasyFragment myObj = new EasyFragment();
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("fscore", myscore);
-//        bundle.putString("date", cDate);
-//        bundle.putString("time", cTime);
-//
-//        // set MyFragment Arguments
-//        myObj.setArguments(bundle);
-//        t.add(R.id.linearEasy, myObj);
-//        t.commit();
+        // Receive Easy
+        Intent eReceived = getIntent();
+        int escore = eReceived.getIntExtra("escore", 0);
+        String edate = eReceived.getStringExtra("edate");
+        String etime = eReceived.getStringExtra("etime");
+
+
+        EasyFragment myObj = new EasyFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction t = manager.beginTransaction();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("escore", escore);
+        bundle.putString("edate", edate);
+        bundle.putString("etime", etime);
+
+        // set MyFragment Arguments
+        myObj.setArguments(bundle);
+        t.add(R.id.container, myObj);
+        t.replace(R.id.container,myObj);
+        t.commit();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
