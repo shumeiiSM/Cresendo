@@ -2,11 +2,13 @@ package com.example.a17010233.cresendo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -260,17 +262,24 @@ public class Quiz extends AppCompatActivity {
 
         int thescore = myscore;
 
-        Intent leaderIntent = new Intent(getApplicationContext(), Leader.class);
-        leaderIntent.putExtra("escore", thescore);
-        leaderIntent.putExtra("edate", cDate);
-        leaderIntent.putExtra("etime", cTime);
-        startActivity(leaderIntent);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(Quiz.this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("escore", thescore);
+        editor.putString("edate", cDate);
+        editor.putString("etime", cTime);
+        editor.commit();
 
-//        Intent i = new Intent(getApplicationContext(), EndQuiz.class);
-//        String myLevel = tvLevel.getText().toString();
-//        i.putExtra("fscore", myscore);
-//        i.putExtra("level", myLevel);
-//        startActivity(i);
+//        Intent leaderIntent = new Intent(getApplicationContext(), Leader.class);
+//        leaderIntent.putExtra("escore", thescore);
+//        leaderIntent.putExtra("edate", cDate);
+//        leaderIntent.putExtra("etime", cTime);
+//        startActivity(leaderIntent);
+
+        Intent i = new Intent(getApplicationContext(), EndQuiz.class);
+        String myLevel = tvLevel.getText().toString();
+        i.putExtra("fscore", myscore);
+        i.putExtra("level", myLevel);
+        startActivity(i);
 
         //setResult(RESULT_OK, i);
         //finish();

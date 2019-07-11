@@ -3,7 +3,9 @@ package com.example.a17010233.cresendo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -21,12 +23,16 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class EasyFragment extends Fragment{
+public class EasyFragment extends Fragment {
 
     TextView tv;
     ListView lv;
     ArrayList<Score> score;
     ArrayAdapter<Score> aa;
+
+    int escore;
+    String edate;
+    String etime;
 
     public EasyFragment() {
         // Required empty public constructor
@@ -42,10 +48,34 @@ public class EasyFragment extends Fragment{
         tv = view.findViewById(R.id.tv);
         lv = view.findViewById(R.id.lveasy);
 
+//        if (!savedInstanceState.isEmpty()) {
+//            escore = savedInstanceState.getInt("escore", 0);
+//            edate = savedInstanceState.getString("edate");
+//            etime = savedInstanceState.getString("etime");
+//        }
+
         score = new ArrayList<Score>();
         score.add(new Score("green", "Mon, 20 May 2019", "5:21 PM", 300));
         score.add(new Score("green", "Thur, 1 Jun 2019", "10:30 AM", 100));
         score.add(new Score("green", "Tue, 9 Jul 2019", "8:26 PM", 500));
+
+
+//        Bundle bundle = this.getArguments();
+//        if (getArguments() != null) {
+//            int escore = bundle.getInt("escore", 0);
+//            String edate = bundle.getString("edate");
+//            String etime = bundle.getString("etime");
+//
+//            score = new ArrayList<Score>();
+//            score.add(new Score("green", "Mon, 20 May 2019", "5:21 PM", 300));
+//            score.add(new Score("green", "Thur, 1 Jun 2019", "10:30 AM", 100));
+//            score.add(new Score("green", "Tue, 9 Jul 2019", "8:26 PM", 500));
+//            score.add(new Score("green", etime, edate, escore));
+//            //aa.notifyDataSetChanged();
+//        } else {
+//            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
+//        }
+
 
         aa = new EasyAdapter(getActivity(), R.layout.leaderboard, score);
         lv.setAdapter(aa);
@@ -56,24 +86,50 @@ public class EasyFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        Bundle bundle = this.getArguments();
-        if (getArguments() != null) {
-            int escore = bundle.getInt("escore");
-            String edate = bundle.getString("edate");
-            String etime = bundle.getString("etime");
+//        Bundle bundle = this.getArguments();
+//        if (getArguments() != null) {
+//            int escore = bundle.getInt("escore");
+//            String edate = bundle.getString("edate");
+//            String etime = bundle.getString("etime");
+//
+//            score.add(new Score("green", etime, edate, escore));
+//            aa.notifyDataSetChanged();
+//        } else {
+//            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
+//        }
+//    }
 
-            score.add(new Score("green", etime, edate, escore));
+//        Bundle bundle = this.getArguments();
+//        if (getArguments() != null) {
+//            int escore = bundle.getInt("escore", 0);
+//            String edate = bundle.getString("edate");
+//            String etime = bundle.getString("etime");
+//
+//            score.add(new Score("green", etime, edate, escore));
+//            aa.notifyDataSetChanged();
+//        } else {
+//            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
+//        }
+//    }
+
+
+        // Retrieve the saved data from the SharedPreferences object
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        int escore = prefs.getInt("escore", 0);
+        String edate = prefs.getString("edate", "no date");
+        String etime = prefs.getString("etime", "no time");
+
+        if (score.get(score.size() - 1).getScore() != escore && !score.get(score.size() - 1).getDate().equals(edate) && !score.get(score.size() - 1).getTime().equals(etime)) {
+            score.add(new Score("green", edate, etime, escore));
             aa.notifyDataSetChanged();
-        } else {
-            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
         }
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.fragment_easy);
-
 
 
         //tv = findViewById(R.id.tv);

@@ -1,6 +1,8 @@
 package com.example.a17010233.cresendo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -41,27 +43,27 @@ public class Leader extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        // Receive Easy
-        Intent eReceived = getIntent();
-        int escore = eReceived.getIntExtra("escore", 0);
-        String edate = eReceived.getStringExtra("edate");
-        String etime = eReceived.getStringExtra("etime");
+//        // Receive Easy
+//        Intent eReceived = getIntent();
+//        int escore = eReceived.getIntExtra("escore", 0);
+//        String edate = eReceived.getStringExtra("edate");
+//        String etime = eReceived.getStringExtra("etime");
 
 
-        EasyFragment myObj = new EasyFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction t = manager.beginTransaction();
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("escore", escore);
-        bundle.putString("edate", edate);
-        bundle.putString("etime", etime);
-
-        // set MyFragment Arguments
-        myObj.setArguments(bundle);
-        t.add(R.id.container, myObj);
-        t.replace(R.id.container,myObj);
-        t.commit();
+//        EasyFragment myObj = new EasyFragment();
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction t = manager.beginTransaction();
+//
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("escore", escore);
+//        bundle.putString("edate", edate);
+//        bundle.putString("etime", etime);
+//
+//        // set MyFragment Arguments
+//        myObj.setArguments(bundle);
+////        t.add(R.id.container, myObj);
+//        t.replace(R.id.container,myObj);
+//        t.commit();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
