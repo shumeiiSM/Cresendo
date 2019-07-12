@@ -12,8 +12,8 @@ import android.widget.TextView;
 public class EndQuiz extends AppCompatActivity {
 
     LinearLayout linear;
-    TextView tvScore, tvLevel;
-    Button btnPlay, btnLevel, btn;
+    TextView tvScore, tvLevel, tvLeader;
+    Button btnPlay, btnLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class EndQuiz extends AppCompatActivity {
         tvScore = findViewById(R.id.tvFScore);
         btnPlay = findViewById(R.id.btnPlay);
         btnLevel = findViewById(R.id.btnLevel);
-        btn = findViewById(R.id.button3);
+        tvLeader = findViewById(R.id.tvLeader);
 
         Intent intentReceived = getIntent();
         int score = intentReceived.getIntExtra("fscore",0);
@@ -85,7 +85,7 @@ public class EndQuiz extends AppCompatActivity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        tvLeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(),Leader.class);

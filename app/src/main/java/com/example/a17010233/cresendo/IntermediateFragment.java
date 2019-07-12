@@ -1,7 +1,9 @@
 package com.example.a17010233.cresendo;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,8 +41,17 @@ public class IntermediateFragment extends Fragment {
 
         score = new ArrayList<Score>();
         score.add(new Score("blue", "Thur, 1 Jun 2019", "10:30 AM", 100));
-        score.add(new Score("blue", "Tue, 9 Jul 2019", "8:26 PM", 500));
-        score.add(new Score("blue", "Mon, 20 May 2019", "5:21 PM", 300));
+
+        // Retrieve the saved data from the SharedPreferences object
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            int iscore = prefs.getInt("iscore", 0);
+            String idate = prefs.getString("idate", "no date");
+            String itime = prefs.getString("itime", "no time");
+
+        if (iscore != 0 && !idate.equals("no date") && !itime.equals("no time")) {
+            score.add(new Score("blue", idate, itime, iscore));
+        }
+
 
         aa = new EasyAdapter(getActivity(), R.layout.leaderboard, score);
         lv.setAdapter(aa);

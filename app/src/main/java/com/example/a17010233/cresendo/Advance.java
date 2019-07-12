@@ -2,11 +2,13 @@ package com.example.a17010233.cresendo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -256,22 +258,19 @@ public class Advance extends AppCompatActivity {
         String cDate = date.format(new Date());
         String cTime = time.format(new Date());
 
-        Bundle bundle = new Bundle();
-        bundle.putInt("fscore", myscore);
-        bundle.putString("date", cDate);
-        bundle.putString("time", cTime);
-        // set MyFragment Arguments
-        EasyFragment myObj = new EasyFragment();
-        myObj.setArguments(bundle);
+        int thescore = myscore;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(Advance.this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("ascore", thescore);
+        editor.putString("adate", cDate);
+        editor.putString("atime", cTime);
+        editor.commit();
 
         Intent i = new Intent(getApplicationContext(), EndQuiz.class);
         String myLevel = tvLevel.getText().toString();
         i.putExtra("fscore", myscore);
         i.putExtra("level", myLevel);
-
-        //setResult(RESULT_OK, i);
-        //finish();
-
         startActivity(i);
     }
 

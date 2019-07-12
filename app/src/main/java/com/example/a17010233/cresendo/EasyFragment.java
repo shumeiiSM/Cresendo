@@ -59,6 +59,21 @@ public class EasyFragment extends Fragment {
         score.add(new Score("green", "Thur, 1 Jun 2019", "10:30 AM", 100));
         score.add(new Score("green", "Tue, 9 Jul 2019", "8:26 PM", 500));
 
+        // Retrieve the saved data from the SharedPreferences object
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            int escore = prefs.getInt("escore", 0);
+            String edate = prefs.getString("edate", "no date");
+            String etime = prefs.getString("etime", "no time");
+
+            if (escore != 0 && !edate.equals("no date") && !etime.equals("no time")) {
+                score.add(new Score("green", edate, etime, escore));
+            }
+
+//        if (score.get(score.size() - 1).getScore() != escore && !score.get(score.size() - 1).getDate().equals(edate) && !score.get(score.size() - 1).getTime().equals(etime)) {
+//            score.add(new Score("green", edate, etime, escore));
+//            aa.notifyDataSetChanged();
+//        }
+
 
 //        Bundle bundle = this.getArguments();
 //        if (getArguments() != null) {
@@ -82,10 +97,11 @@ public class EasyFragment extends Fragment {
 
         return view;
     }
+}
 
-    @Override
-    public void onResume() {
-        super.onResume();
+//    @Override
+//    public void onResume() {
+//        super.onResume();
 //        Bundle bundle = this.getArguments();
 //        if (getArguments() != null) {
 //            int escore = bundle.getInt("escore");
@@ -114,21 +130,21 @@ public class EasyFragment extends Fragment {
 
 
         // Retrieve the saved data from the SharedPreferences object
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        int escore = prefs.getInt("escore", 0);
-        String edate = prefs.getString("edate", "no date");
-        String etime = prefs.getString("etime", "no time");
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        int escore = prefs.getInt("escore", 0);
+//        String edate = prefs.getString("edate", "no date");
+//        String etime = prefs.getString("etime", "no time");
+//
+//        if (score.get(score.size() - 1).getScore() != escore && !score.get(score.size() - 1).getDate().equals(edate) && !score.get(score.size() - 1).getTime().equals(etime)) {
+//            score.add(new Score("green", edate, etime, escore));
+//            aa.notifyDataSetChanged();
+//        }
+//    }
+//}
 
-        if (score.get(score.size() - 1).getScore() != escore && !score.get(score.size() - 1).getDate().equals(edate) && !score.get(score.size() - 1).getTime().equals(etime)) {
-            score.add(new Score("green", edate, etime, escore));
-            aa.notifyDataSetChanged();
-        }
-    }
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
         //setContentView(R.layout.fragment_easy);
 
 
@@ -151,7 +167,7 @@ public class EasyFragment extends Fragment {
 //            Toast.makeText(getActivity(), "Nothing", Toast.LENGTH_LONG).show();
 //
 //        }
-    }
+//    }
 
 //    @Override
 //    public void onActivityResult(int requestCode, int
@@ -172,4 +188,3 @@ public class EasyFragment extends Fragment {
 //            }
 //        }
 //    }
-}

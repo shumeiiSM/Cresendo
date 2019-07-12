@@ -47,8 +47,8 @@
                 android:layout_height="70dp" />
 
             <Button
-                android:id="@+id/learn"
-                android:text="Learn"
+                android:id="@+id/leader"
+                android:text="Leaderboard"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:layout_marginLeft="25dp"
@@ -58,25 +58,18 @@
                 android:layout_width="500dp"
                 android:layout_height="70dp" />
 
-            <Button
-                android:id="@+id/leader"
-                android:text="Leaderboard"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="225dp"
-                android:background="@drawable/start"
-                android:layout_width="500dp"
-                android:layout_height="70dp" />
+            <!--<Button-->
+                <!--android:id="@+id/leader"-->
+                <!--android:text="Leaderboard"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textSize="20sp"-->
+                <!--android:layout_marginLeft="25dp"-->
+                <!--android:layout_marginRight="25dp"-->
+                <!--android:layout_marginTop="225dp"-->
+                <!--android:background="@drawable/start"-->
+                <!--android:layout_width="500dp"-->
+                <!--android:layout_height="70dp" />-->
             
         </RelativeLayout>
-
-
     </RelativeLayout>
-
-
-
-
-
 </RelativeLayout>
